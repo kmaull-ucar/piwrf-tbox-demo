@@ -1,0 +1,633 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pieyenne &#8212; Pi-WRF Teaching Box</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Run WRF on Raspberry Pi" href="../ch2/piwrf_wrf_on_pi.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/piwrf_logo.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Pi-WRF Teaching Box</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Pi-WRF Teaching Box
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ch1/placeholder.html">
+   temp file: module
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ch2/piwrf_wrf_on_pi.html">
+   Run WRF on Raspberry Pi
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Pieyenne
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/reidolson/piwrf-teachingbox">
+   piwrf-teachingbox on GitHub
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/ch3/piwrf_pieyenne.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fch3/piwrf_pieyenne.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goal">
+   Goal
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#who-this-is-for">
+   Who this is for
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#equipment">
+   Equipment
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raspberry-pi-4-minimum-of-2-there-are-three-versions-of-the-raspberry-pi-4-that-are-available-computing-power-and-price-increases-with-each-version-of-the-raspberry-pi4-but-the-lowest-level-will-suffice-for-this-project">
+     1. Raspberry Pi 4 (minimum of 2) - There are three versions of the raspberry pi 4 that are available. Computing power and price increases with each version of the Raspberry Pi4 but the lowest level will suffice for this project.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raspberry-pi-power-supply-this-is-a-special-usb-c-power-adaptor-that-will-power-your-raspberry-pi">
+     2. Raspberry Pi Power Supply - This is a special USB-C power adaptor that will power your Raspberry Pi.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#micro-sd-card-for-each-pi-the-amount-of-storage-varies-widely-for-sd-cards-a-minimum-of-32gb-will-suffice-for-this-project">
+     3. Micro SD CARD for each Pi - The amount of storage varies widely for SD cards. A minimum of 32GB will suffice for this project.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hdmi-cable">
+     4. HDMI Cable.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#network-switch-not-a-router-and-enough-ports-for-each-pi-it-is-not-recommended-to-use-a-router-in-place-of-a-switch-the-price-of-the-switch-increases-with-speed-and-performance-for-this-project-a-basic-switch-is-recommended-to-save-costs-10-100">
+     5. Network Switch (not a router  and enough ports for each pi) - It is not recommended to use a router in place of a switch. The price of the switch increases with speed and performance. For this project, a basic switch is recommended to save costs (10/100)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ethernet-cables-for-each-pi">
+     6. Ethernet cables for each Pi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#usb-mouse-keyboard">
+     7. USB Mouse/Keyboard
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#monitor">
+     8. Monitor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#personal-computer-laptop">
+     9. Personal computer/laptop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#power-strip">
+     10. Power strip
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#supercomputers-today">
+   Supercomputers Today
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#today-s-supercomputers-and-data-centers">
+     Today’s Supercomputers and Data Centers
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pieyenne-instructions">
+   Pieyenne Instructions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#download-cheyenne-image-and-cloning-software">
+     1. Download Cheyenne Image and Cloning Software
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#download-the-raspberry-pi-image">
+       1.1 Download the Raspberry Pi image
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#download-the-software-to-flash-the-iso-image-to-a-micro-sd-card">
+       1.2 Download the software to flash the .ISO image to a micro SD card
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#flash-the-micro-sd-card">
+       1.3 Flash the micro SD card
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#repeat-the-flash-steps-for-each-micro-sd-card-you-will-use">
+       1.4 Repeat the flash steps for each micro SD card you will use
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup-your-hardware">
+     2. Setup your hardware
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#insert-micro-sd-cards">
+       2.1 Insert micro SD cards
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#insert-ethernet-cables">
+       2.2 Insert ethernet cables
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#connect-ethernet-cables-to-router">
+       2.3 Connect ethernet cables to router
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#connect-peripherals-keyboard-mouse-and-hdmi-cable">
+       2.4 Connect peripherals (keyboard, mouse, and hdmi cable)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#power-up-the-system">
+       2.5 Power up the system
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#connect-to-the-internet">
+       2.6 Connect to the internet
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configure-the-cluster">
+     3. Configure the Cluster
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#launch-terminal">
+       3.1 Launch terminal
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#run-configure-script">
+       3.2 Run configure script
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#set-the-date-and-time-of-your-system">
+       3.3 Set the date and time of your system
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#monitor-your-cluster">
+     4. Monitor Your Cluster
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#run-the-monitor-cluster-script">
+       4.1 Run the monitor_cluster script
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#setup-grafana">
+       4.2 Setup Grafana
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="pieyenne">
+<h1>Pieyenne<a class="headerlink" href="#pieyenne" title="Permalink to this headline">¶</a></h1>
+<p><img alt="title" src="../_images/piwrf_pieyenne.jpeg" /></p>
+<p>Build NCAR’s Supercomputer with Raspberry Pis!</p>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>With more and more digital data being collected every day. Although home computers are getting faster and are able to process more data than ever, there still exist large complex scientific problems that are too complex and produce too much data for any top-of-the-line computer anyone can purchase (as of 2019).</p>
+<p>To tackle these difficult problems, supercomputers and clusters are used to. These machines are not necessarily a one-off expensive machine, but they are essentially high end desktop computers that are all networked together to allow for each individual computer to work on a portion of the problem in tandem.</p>
+<p>The scale computers can scale and are only constrained by budgets. Supercomputers can cost tens of millions of dollars and consist of thousands of individual computers.</p>
+</div>
+<div class="section" id="goal">
+<h2>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h2>
+<p>The goal of this project is to build a computing cluster with Raspberry Pis. HAving the cluster will allow for some applications to run whereas it will not be able to run on a single Raspberry Pi. To complete the project, users will need to download and upload file, create a local area network with a router, and run install scripts.</p>
+</div>
+<div class="section" id="who-this-is-for">
+<h2>Who this is for<a class="headerlink" href="#who-this-is-for" title="Permalink to this headline">¶</a></h2>
+<p>This project is recommended for grades 9-12 (high school). The project will require typing skills, downloading and running scripts.</p>
+</div>
+<div class="section" id="equipment">
+<h2>Equipment<a class="headerlink" href="#equipment" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="raspberry-pi-4-minimum-of-2-there-are-three-versions-of-the-raspberry-pi-4-that-are-available-computing-power-and-price-increases-with-each-version-of-the-raspberry-pi4-but-the-lowest-level-will-suffice-for-this-project">
+<h3>1. <a class="reference external" href="https://www.raspberrypi.org/products/raspberry-pi-4-model-b/">Raspberry Pi 4</a> (minimum of 2) - There are three versions of the raspberry pi 4 that are available. Computing power and price increases with each version of the Raspberry Pi4 but the lowest level will suffice for this project.<a class="headerlink" href="#raspberry-pi-4-minimum-of-2-there-are-three-versions-of-the-raspberry-pi-4-that-are-available-computing-power-and-price-increases-with-each-version-of-the-raspberry-pi4-but-the-lowest-level-will-suffice-for-this-project" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="raspberry-pi-power-supply-this-is-a-special-usb-c-power-adaptor-that-will-power-your-raspberry-pi">
+<h3>2. <a class="reference external" href="https://www.raspberrypi.org/products/type-c-power-supply/">Raspberry Pi Power Supply</a> - This is a special USB-C power adaptor that will power your Raspberry Pi.<a class="headerlink" href="#raspberry-pi-power-supply-this-is-a-special-usb-c-power-adaptor-that-will-power-your-raspberry-pi" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="micro-sd-card-for-each-pi-the-amount-of-storage-varies-widely-for-sd-cards-a-minimum-of-32gb-will-suffice-for-this-project">
+<h3>3. Micro SD CARD for each Pi - The amount of storage varies widely for SD cards. A minimum of 32GB will suffice for this project.<a class="headerlink" href="#micro-sd-card-for-each-pi-the-amount-of-storage-varies-widely-for-sd-cards-a-minimum-of-32gb-will-suffice-for-this-project" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="hdmi-cable">
+<h3>4. HDMI Cable.<a class="headerlink" href="#hdmi-cable" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="network-switch-not-a-router-and-enough-ports-for-each-pi-it-is-not-recommended-to-use-a-router-in-place-of-a-switch-the-price-of-the-switch-increases-with-speed-and-performance-for-this-project-a-basic-switch-is-recommended-to-save-costs-10-100">
+<h3>5. <a class="reference external" href="https://www.amazon.com/Computer-Networking-Switches/b?ie=UTF8&amp;node=281414">Network Switch</a> (not a router  and enough ports for each pi) - It is not recommended to use a router in place of a switch. The price of the switch increases with speed and performance. For this project, a basic switch is recommended to save costs (10/100)<a class="headerlink" href="#network-switch-not-a-router-and-enough-ports-for-each-pi-it-is-not-recommended-to-use-a-router-in-place-of-a-switch-the-price-of-the-switch-increases-with-speed-and-performance-for-this-project-a-basic-switch-is-recommended-to-save-costs-10-100" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="ethernet-cables-for-each-pi">
+<h3>6. Ethernet cables for each Pi<a class="headerlink" href="#ethernet-cables-for-each-pi" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="usb-mouse-keyboard">
+<h3>7. USB Mouse/Keyboard<a class="headerlink" href="#usb-mouse-keyboard" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="monitor">
+<h3>8. Monitor<a class="headerlink" href="#monitor" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="personal-computer-laptop">
+<h3>9. Personal computer/laptop<a class="headerlink" href="#personal-computer-laptop" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="power-strip">
+<h3>10. Power strip<a class="headerlink" href="#power-strip" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="supercomputers-today">
+<h2>Supercomputers Today<a class="headerlink" href="#supercomputers-today" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="today-s-supercomputers-and-data-centers">
+<h3>Today’s Supercomputers and Data Centers<a class="headerlink" href="#today-s-supercomputers-and-data-centers" title="Permalink to this headline">¶</a></h3>
+<p>NCAR’s has a long history of owning and using supercomputers that dates back to 1970’s. Historically, these computers have been used to advance our knowledge of weather and climate. NCAR’s current supercomputer “<a class="reference external" href="https://www2.cisl.ucar.edu/ncar-wyoming-supercomputing-center">Cheyenne</a>” is based in Cheyenne, Wyoming. Although the primary research done on Cheyenne is tailored to weather and climate research, it is also used in other fields such as renewable energy research, engineering, astrophysics, data science, and artificial intelligence.</p>
+<p><img alt="title" src="../_images/cray1.jpeg" /></p>
+<p><img alt="title" src="../_images/cray2.jpeg" /></p>
+<p>The world’s most powerful supercompter is named Summit (as of 2019) and is located in Oak Ridge, Tennessee at Oak Ridge National Laboratory. There are internal components of Summit that differ from Cheyenne, but the concept is the same. The research done on Summit focuses on energy research include, nuclear fusion, cancer research, biology, chemistry, and material science.</p>
+<p><img alt="title" src="../_images/summit.jpeg" /></p>
+<p>Cloud Supercomputers: Since supercomputers require dedicated facilities (sometime their own power grid) it is not feasible for some organizations to build one. With this in mind, “cloud supercomputers” do exist. Several large tech companies offer cloud computing resources to individuals or organizations on a pay-as-you-go basis.</p>
+<p><img alt="title" src="../_images/cloud.jpeg" /></p>
+</div>
+</div>
+<div class="section" id="pieyenne-instructions">
+<h2>Pieyenne Instructions<a class="headerlink" href="#pieyenne-instructions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="download-cheyenne-image-and-cloning-software">
+<h3>1. Download Cheyenne Image and Cloning Software<a class="headerlink" href="#download-cheyenne-image-and-cloning-software" title="Permalink to this headline">¶</a></h3>
+<p><em>Disclaimer</em>
+The first section is optional but <strong>Highly Recommended</strong>! If you choose to forego the first section, the files may not install correctly and permissions on your Raspberry Pi will be changed. Fixing these problems is not time consuming but it will require technical expertise.</p>
+<p>In the first section you will download the Cheyenne Image to your computer and then upload it to your micro SD card. The image file you will download is an .ISO image file that contains the entire Raspbian operating system and all of the necessary software combined into a single file. Since this is a unique type of file, you cannot simply copy and paste the file onto your micro SD card. You will need a program that will not only copy the file to the micro SD card, but will also format the .ISO image file so that it knows how to control your Raspberry Pi. Formatting the .ISO image file and copying it to a micro SD card is known as “flashing the image” to a micro SD card. Once you have flashed the image to your micro SD card, you can then use your Raspberry Pi.</p>
+<div class="section" id="download-the-raspberry-pi-image">
+<h4>1.1 Download the Raspberry Pi image<a class="headerlink" href="#download-the-raspberry-pi-image" title="Permalink to this headline">¶</a></h4>
+<p>The first step of this section is to download the .ISO image file to your personal computer or laptop ( this step will work for any operating system). Right click on the blue link and choose “save link as” [insert address for print version]. This will prompt you to save the link to the destination of your choice. Once you do this simply hit enter or select “OK” and the download will start.
+<em>Depending on the speed of your network, this may take 5-20 minutes.</em></p>
+</div>
+<div class="section" id="download-the-software-to-flash-the-iso-image-to-a-micro-sd-card">
+<h4>1.2 Download the software to flash the .ISO image to a micro SD card<a class="headerlink" href="#download-the-software-to-flash-the-iso-image-to-a-micro-sd-card" title="Permalink to this headline">¶</a></h4>
+<p>After downloading the image file, you will need special software to flash the .ISO image to a micro SD card. You may already have some software capable of this installed on your computer. If this is the case, you are welcome to use any software to flash the image. We recommend Etcher as the program of choice. The software is open-source, secure, and freely available. To download Etcher go to this website (link) and you will see a button to download the program based on your operating system. Select your operating system and choose install. You may install it in the location of your choosing.</p>
+</div>
+<div class="section" id="flash-the-micro-sd-card">
+<h4>1.3 Flash the micro SD card<a class="headerlink" href="#flash-the-micro-sd-card" title="Permalink to this headline">¶</a></h4>
+<p>Now you will need to insert you micro SD card either directly into you computer or through some sort of adapter. Once you micro SD card is recognized by your computer you are ready to flash it. Open Etcher or your program of choice, and you will be prompted with a menu. First you will click the button to select your image (in this case it is the Cheyenne .ISO image file you just downloaded). You will then be prompted to choose the image file you downloaded in the previous step. After that, you must select drive, which is your micro SD card. Once that is done, you may click “flash”.</p>
+</div>
+<div class="section" id="repeat-the-flash-steps-for-each-micro-sd-card-you-will-use">
+<h4>1.4 Repeat the flash steps for each micro SD card you will use<a class="headerlink" href="#repeat-the-flash-steps-for-each-micro-sd-card-you-will-use" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="setup-your-hardware">
+<h3>2. Setup your hardware<a class="headerlink" href="#setup-your-hardware" title="Permalink to this headline">¶</a></h3>
+<p>Since you have your micro SD card formatted, it will act as your Raspberry Pi’s hard drive. Now, you simply need to set up the hardware for your cluster.</p>
+<div class="section" id="insert-micro-sd-cards">
+<h4>2.1 Insert micro SD cards<a class="headerlink" href="#insert-micro-sd-cards" title="Permalink to this headline">¶</a></h4>
+<p>The slot for the micro SD card is located at the bottom of the Pi (see diagram). Insert it into the slot and it should be a snug fit once it is in all the way. The chassis is designed such that the micro SD card will only fit one way so you will not have to worry about orientation.</p>
+</div>
+<div class="section" id="insert-ethernet-cables">
+<h4>2.2 Insert ethernet cables<a class="headerlink" href="#insert-ethernet-cables" title="Permalink to this headline">¶</a></h4>
+<p>After the flashed micro SD have been inserted into each Raspberry Pi, you must insert your ethernet cables into each Pi. There is a square ethernet jack that is located at the front of each Pi. When you connect your ethernet jack you may hear an audible click and it will lock into place if done correctly.</p>
+</div>
+<div class="section" id="connect-ethernet-cables-to-router">
+<h4>2.3 Connect ethernet cables to router<a class="headerlink" href="#connect-ethernet-cables-to-router" title="Permalink to this headline">¶</a></h4>
+<p>After you have connected the ethernet cable into the Pi, you must do it again for the ports on your switch. Like the Raspberry Pi, you may hear an audible click and it will be a snug fit.</p>
+</div>
+<div class="section" id="connect-peripherals-keyboard-mouse-and-hdmi-cable">
+<h4>2.4 Connect peripherals (keyboard, mouse, and hdmi cable)<a class="headerlink" href="#connect-peripherals-keyboard-mouse-and-hdmi-cable" title="Permalink to this headline">¶</a></h4>
+<p>After these are done, you will need to connect your peripherals. Each Raspberry Pi needs a power source. In addition, you must designate one of your Pis to be a head node. You will connect your keyboard, mouse, and monitor to the head node.</p>
+</div>
+<div class="section" id="power-up-the-system">
+<h4>2.5 Power up the system<a class="headerlink" href="#power-up-the-system" title="Permalink to this headline">¶</a></h4>
+<p>Now you need to plug in your power sources and plug in your router. Once electricity is delivered to each Pi and the switch, they will turn on automatically.</p>
+<p>If this is successful, you should see this desktop menu.</p>
+</div>
+<div class="section" id="connect-to-the-internet">
+<h4>2.6 Connect to the internet<a class="headerlink" href="#connect-to-the-internet" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="configure-the-cluster">
+<h3>3. Configure the Cluster<a class="headerlink" href="#configure-the-cluster" title="Permalink to this headline">¶</a></h3>
+<p>Assuming your Pis are up and running, you will need to configure it so that each Raspberry Pi can ‘communicate’ with each other. In order to do this you will use a script or automated program that finds the IP addresses of all the Raspberry Pis. This is how the system finds all the Pis. Once it does that, it open changes permissions and allows each Raspberry Pi to “talk to one another”</p>
+<div class="section" id="launch-terminal">
+<h4>3.1 Launch terminal<a class="headerlink" href="#launch-terminal" title="Permalink to this headline">¶</a></h4>
+<p>Once all of your Pis are turned on and connected to your switch, you can begin to configure your cluster. To this you will need to first open the terminal (see definition appendix). The terminal is a “bare-bones” interface for your Raspberry Pi. You can do some of the same commands as you normally can on your desktop, (create, copy or move files, open applications, logout, etc) but other commands are also accessible. Do this by clicking this tab in the upper left of your screen. (insert picture). After doing so a black window should appear with a cursor. If you see this text prompt or something similar, you have opened your terminal. Alternatively, you can open the terminal by pressing the following keys together Control+Alt+t</p>
+</div>
+<div class="section" id="run-configure-script">
+<h4>3.2 Run configure script<a class="headerlink" href="#run-configure-script" title="Permalink to this headline">¶</a></h4>
+<p>f you used the Raspberry Pi image file, then the software will already be installed onto your Raspberry Pi. You simply need to type the following commands into your terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://github.com/wefoust/Build-a-Rpi-Cluster/archive/master.zip
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip master.zip
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.mv Build-a-Rpi-Cluster-master/* ..
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm master.zip <span class="p">&amp;</span> Build-a-Rpi-Cluster-master
+</pre></div>
+</div>
+<p>Depending on the size of your cluster, the first phase of the script will take up to 15 minutes to complete depending on the size of you cluster. Throughout the script you will be asked for permission to continue and for passwords.</p>
+<p>Whenever you are asked to continue: type ‘yes’
+Whenever you are asked for a password, type raspberry.</p>
+<p>This will be done many times depending on your cluster.</p>
+</div>
+<div class="section" id="set-the-date-and-time-of-your-system">
+<h4>3.3 Set the date and time of your system<a class="headerlink" href="#set-the-date-and-time-of-your-system" title="Permalink to this headline">¶</a></h4>
+<p>Once your Pi turns on you will need to configure a few settings based on your location and time. First, you will need to setup your timezone and time. To do this click the start menu and then click settings. From there go to date and time, and configure your timezone. Once that is done, connect to the internet by clicking the upper right and choosing network. You can test if you are successfully connected by launching a web browser by going to chromium and going to any website.</p>
+</div>
+</div>
+<div class="section" id="monitor-your-cluster">
+<h3>4. Monitor Your Cluster<a class="headerlink" href="#monitor-your-cluster" title="Permalink to this headline">¶</a></h3>
+<p>With expensive high performance systems, it is important to monitor them to make sure they are always working at full capacity. NCAR has dedicated staff that monitors the system 24/7 to ensure the maximum amount of work is done on the system as possible. In this section you will configure a dashboard so that you can monitor exactly what your cluster is doing.</p>
+<div class="section" id="run-the-monitor-cluster-script">
+<h4>4.1 Run the monitor_cluster script<a class="headerlink" href="#run-the-monitor-cluster-script" title="Permalink to this headline">¶</a></h4>
+<p>To run the script type the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /home/pi/cluster_monitor/
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./monitor_configuration
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./start_monitoring
+</pre></div>
+</div>
+<p>After you type the final command, do not close the terminal window.</p>
+</div>
+<div class="section" id="setup-grafana">
+<h4>4.2 Setup Grafana<a class="headerlink" href="#setup-grafana" title="Permalink to this headline">¶</a></h4>
+<p>Once the cluster has started the monitoring process, you may set up your dashboard. To do this, open the Chromium web browser that is preinstalled on all Raspberry Pis. To Launch Chromium, click the icon in the upper left of the toolbar.</p>
+<p>Once the browser has been launched, type the following command in the address bar
+htt[://localhost:3000</p>
+<p>Once it has started you will be prompted with a sign-in menu. You DO NOT need to register. The default username and password is
+username : admin
+Password : admin</p>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./ch3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../ch2/piwrf_wrf_on_pi.html" title="previous page">Run WRF on Raspberry Pi</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Reid Olson<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
